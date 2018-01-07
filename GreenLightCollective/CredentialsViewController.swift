@@ -23,14 +23,13 @@ class CredentialsViewController: UIViewController {
         // This is just ugly copypasta from ViewController.swift. Some day in the future we will do this more elegantly.
         let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
         let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
+        let namePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("name.txt")?.path
         let fm = FileManager.default
         
-        // Cache ID from text file.
-        let idString = String(data: fm.contents(atPath: idPath!)!, encoding: .utf8)
-        
-        // Set the image and ID label to locally stored data.
+        // Set credentials using locally stored data.
         photoImageView.image = UIImage(data: fm.contents(atPath: filePath!)!)
-        memberIDLabel.text = idString
+        memberIDLabel.text = String(data: fm.contents(atPath: idPath!)!, encoding: .utf8)
+        memberNameLabel.text = String(data: fm.contents(atPath: namePath!)!, encoding: .utf8)
     }
 
     override func didReceiveMemoryWarning() {
