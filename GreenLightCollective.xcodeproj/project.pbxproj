@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BE3C47D59BD99D1CBFF7095 /* Pods_GreenLightCollective.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1252D829BCCAD6334C6AF79E /* Pods_GreenLightCollective.framework */; };
+		BEB0B6B1200268B700539A45 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0B6B0200268B700539A45 /* CredentialsViewController.swift */; };
 		BED1A3BD1FF9518D006CA57B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1A3BC1FF9518D006CA57B /* AppDelegate.swift */; };
 		BED1A3BF1FF9518D006CA57B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1A3BE1FF9518D006CA57B /* ViewController.swift */; };
 		BED1A3C21FF9518D006CA57B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED1A3C01FF9518D006CA57B /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		1252D829BCCAD6334C6AF79E /* Pods_GreenLightCollective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GreenLightCollective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673991AD9218E343CEC7834B /* Pods-GreenLightCollective.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GreenLightCollective.release.xcconfig"; path = "Pods/Target Support Files/Pods-GreenLightCollective/Pods-GreenLightCollective.release.xcconfig"; sourceTree = "<group>"; };
 		7A8DC4289066FCBB0B74DE54 /* Pods-GreenLightCollective.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GreenLightCollective.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GreenLightCollective/Pods-GreenLightCollective.debug.xcconfig"; sourceTree = "<group>"; };
+		BEB0B6B0200268B700539A45 /* CredentialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		BED1A3B91FF9518D006CA57B /* GreenLightCollective.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenLightCollective.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1A3BC1FF9518D006CA57B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED1A3BE1FF9518D006CA57B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				BED1A3BC1FF9518D006CA57B /* AppDelegate.swift */,
 				BED1A3BE1FF9518D006CA57B /* ViewController.swift */,
+				BEB0B6B0200268B700539A45 /* CredentialsViewController.swift */,
 				BED1A3C01FF9518D006CA57B /* Main.storyboard */,
 				BED1A3C31FF9518D006CA57B /* Assets.xcassets */,
 				BED1A3C51FF9518D006CA57B /* LaunchScreen.storyboard */,
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED1A3BF1FF9518D006CA57B /* ViewController.swift in Sources */,
+				BEB0B6B1200268B700539A45 /* CredentialsViewController.swift in Sources */,
 				BED1A3BD1FF9518D006CA57B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your Green Light member ID." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQf-tX-Cuv">
-                                <rect key="frame" x="16" y="20" width="265" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your Greenlight member ID." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQf-tX-Cuv">
+                                <rect key="frame" x="16" y="20" width="255" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -72,10 +72,83 @@
                     <connections>
                         <outlet property="emailText" destination="jAk-fv-Djx" id="uip-dl-wsu"/>
                         <outlet property="idText" destination="5aI-1V-Qc8" id="en7-wq-5S9"/>
+                        <segue destination="qHF-AC-kbl" kind="show" identifier="loginSegue" id="0gM-bt-oDf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Credentials View Controller-->
+        <scene sceneID="3Xa-Wf-4Xd">
+            <objects>
+                <viewController id="qHF-AC-kbl" customClass="CredentialsViewController" customModule="GreenLightCollective" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Ts-Di-b6d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9e-Mx-VmT">
+                                <rect key="frame" x="27" y="20" width="320" height="320"/>
+                                <color key="tintColor" red="0.031446518729999998" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Greenlight Member" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5P-t6-uJL">
+                                <rect key="frame" x="27" y="348" width="320" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZU-MS-SRg">
+                                <rect key="frame" x="27" y="389" width="320" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ7-AM-vjs">
+                                <rect key="frame" x="27" y="430" width="320" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-UW-O3T">
+                                <rect key="frame" x="15" y="617" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="qHF-AC-kbl" eventType="touchUpInside" id="etj-Sg-zyc"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="3em-tU-Rcl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.031446518729999998" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lJ7-AM-vjs" firstAttribute="top" secondItem="pZU-MS-SRg" secondAttribute="bottom" constant="8" id="1HW-TO-C1G"/>
+                            <constraint firstItem="1KD-7M-7H9" firstAttribute="trailing" secondItem="y9e-Mx-VmT" secondAttribute="trailing" constant="28" id="RG1-2G-BEX"/>
+                            <constraint firstItem="1KD-7M-7H9" firstAttribute="trailing" secondItem="pZU-MS-SRg" secondAttribute="trailing" constant="28" id="SdW-rF-ePz"/>
+                            <constraint firstItem="pZU-MS-SRg" firstAttribute="top" secondItem="h5P-t6-uJL" secondAttribute="bottom" constant="8" id="U7B-OT-AZp"/>
+                            <constraint firstItem="y9e-Mx-VmT" firstAttribute="top" secondItem="1KD-7M-7H9" secondAttribute="top" id="UVH-eP-2DX"/>
+                            <constraint firstItem="HH5-UW-O3T" firstAttribute="leading" secondItem="1KD-7M-7H9" secondAttribute="leading" constant="15" id="ZTa-fA-Vum"/>
+                            <constraint firstItem="pZU-MS-SRg" firstAttribute="leading" secondItem="1KD-7M-7H9" secondAttribute="leading" constant="27" id="ayO-5x-KUM"/>
+                            <constraint firstItem="1KD-7M-7H9" firstAttribute="trailing" secondItem="lJ7-AM-vjs" secondAttribute="trailing" constant="28" id="bTS-hC-fGr"/>
+                            <constraint firstItem="1KD-7M-7H9" firstAttribute="trailing" secondItem="h5P-t6-uJL" secondAttribute="trailing" constant="28" id="cge-7h-2lp"/>
+                            <constraint firstItem="lJ7-AM-vjs" firstAttribute="leading" secondItem="1KD-7M-7H9" secondAttribute="leading" constant="27" id="gRR-55-bQl"/>
+                            <constraint firstItem="1KD-7M-7H9" firstAttribute="bottom" secondItem="HH5-UW-O3T" secondAttribute="bottom" constant="20" id="gpe-KV-zss"/>
+                            <constraint firstItem="h5P-t6-uJL" firstAttribute="top" secondItem="y9e-Mx-VmT" secondAttribute="bottom" constant="8" id="gvp-qN-ZNR"/>
+                            <constraint firstItem="y9e-Mx-VmT" firstAttribute="leading" secondItem="1KD-7M-7H9" secondAttribute="leading" constant="27" id="kGg-wP-1M3"/>
+                            <constraint firstItem="h5P-t6-uJL" firstAttribute="leading" secondItem="1KD-7M-7H9" secondAttribute="leading" constant="27" id="y9R-hc-43E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1KD-7M-7H9"/>
+                    </view>
+                    <connections>
+                        <outlet property="memberIDLabel" destination="lJ7-AM-vjs" id="HXH-CY-mFa"/>
+                        <outlet property="memberNameLabel" destination="pZU-MS-SRg" id="3uq-Cu-pmy"/>
+                        <outlet property="photoImageView" destination="y9e-Mx-VmT" id="qVu-kD-PVR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OoC-b1-aWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357.5999999999999" y="32.833583208395808"/>
         </scene>
     </scenes>
 </document>

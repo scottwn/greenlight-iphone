@@ -31,17 +31,35 @@ class ViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        print("making Alamofire request with email \(emailText.text) and id \(idText.text)")
+        if let emailString = emailText.text, let idString = idText.text {
+            print("making Alamofire request with email \(emailString) and id \(idString)")
+        }
         Alamofire.request("https://greenlight-courses.herokuapp.com/resources", method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? ""]).response { response in
-            print("Request: \(response.request)")
-            print("Response: \(response.response)")
-            print("Error: \(response.error)")
+            
+            if let requestString = response.request, let responseString = response.response, let errorString = response.error {
+                print("Request: \(requestString)")
+                print("Response: \(responseString)")
+                print("Error: \(errorString)")
+            }
             
             if response.response?.allHeaderFields["Content-Type"] as! String == "image/jpeg" {
                 print("picture exists")
+                if let dataSize = response.data?.count {
+                    print("response contains \(dataSize) bytes")
+                }
+                let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.absoluteString
+                let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.absoluteString
+                let fm = FileManager.default
+                let idData = self.idText.text?.data(using: .utf8)
+                print("creating file at \(filePath!)")
+                fm.createFile(atPath: filePath!, contents: response.data)
+                fm.createFile(atPath: idPath!, contents: idData)
+                // Display login credentials
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
             } else if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 if data.count == 0 {
                     print("null response")
+                    // Prompt user to upload picture
                 } else {
                     // Send user an alert.
                     let alert = UIAlertController(title: "Login Problem", message: utf8Text, preferredStyle: .alert)
