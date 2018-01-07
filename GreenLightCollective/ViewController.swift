@@ -47,8 +47,8 @@ class ViewController: UIViewController {
                 if let dataSize = response.data?.count {
                     print("response contains \(dataSize) bytes")
                 }
-                let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.absoluteString
-                let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.absoluteString
+                let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
+                let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
                 let fm = FileManager.default
                 let idData = self.idText.text?.data(using: .utf8)
                 print("creating file at \(filePath!)")

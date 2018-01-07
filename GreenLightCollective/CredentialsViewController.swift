@@ -21,8 +21,8 @@ class CredentialsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // This is just ugly copypasta from ViewController.swift. Some day in the future we will do this more elegantly.
-        let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.absoluteString
-        let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.absoluteString
+        let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
+        let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
         let fm = FileManager.default
         
         // Cache ID from text file.
