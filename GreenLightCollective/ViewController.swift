@@ -37,14 +37,19 @@ class ViewController: UIViewController {
             print("Response: \(response.response)")
             print("Error: \(response.error)")
             
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+            if response.response?.allHeaderFields["Content-Type"] as! String == "image/jpeg" {
+                print("picture exists")
+            } else if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 if data.count == 0 {
                     print("null response")
-                } else if data.count < 100 {
-                    //send user an alert
                 } else {
-                    print("picture exists")
+                    // Send user an alert.
+                    let alert = UIAlertController(title: "Login Problem", message: utf8Text, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in NSLog("The \"OK\" alert occured.")}))
+                    self.present(alert, animated: true, completion: nil)
                 }
+            } else {
+                print("unknown response")
             }
         }
     }
