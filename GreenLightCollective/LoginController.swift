@@ -9,15 +9,16 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class LoginController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var idText: UITextField!
     @IBOutlet weak var emailText: UITextField!
+    let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
+    let fm = FileManager.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,13 +57,11 @@ class ViewController: UIViewController {
                 if let dataSize = response.data?.count {
                     print("response contains \(dataSize) bytes")
                 }
-                let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
                 let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
-                let fm = FileManager.default
                 let idData = self.idText.text?.data(using: .utf8)
-                print("creating file at \(filePath!)")
-                fm.createFile(atPath: filePath!, contents: response.data)
-                fm.createFile(atPath: idPath!, contents: idData)
+                print("creating file at \(self.filePath!)")
+                self.fm.createFile(atPath: self.filePath!, contents: response.data)
+                self.fm.createFile(atPath: idPath!, contents: idData)
                 self.displayCredentials()
             } else if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 if data.count == 0 {

@@ -31,9 +31,13 @@ class CredentialsViewController: UIViewController {
         fm = FileManager.default
         
         // Set credentials using locally stored data.
-        photoImageView.image = UIImage(data: fm.contents(atPath: filePath!)!)
-        memberIDLabel.text = String(data: fm.contents(atPath: idPath!)!, encoding: .utf8)
-        memberNameLabel.text = String(data: fm.contents(atPath: namePath!)!, encoding: .utf8)
+        if let photoData = fm.contents(atPath: filePath), let idData = fm.contents(atPath: idPath), let nameData = fm.contents(atPath: namePath) {
+            photoImageView.image = UIImage(data: photoData)
+            memberIDLabel.text = String(data: idData, encoding: .utf8)
+            memberNameLabel.text = String(data: nameData, encoding: .utf8)
+        } else {
+            print("problem loading credentials")
+        }
     }
 
     override func didReceiveMemoryWarning() {
