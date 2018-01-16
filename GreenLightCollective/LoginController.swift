@@ -14,8 +14,7 @@ class LoginController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var idText: UITextField!
     @IBOutlet weak var emailText: UITextField!
-    let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
-    let fm = FileManager.default
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +26,7 @@ class LoginController: UIViewController {
     }
     
     func displayCredentials() {
-        Alamofire.request("https://greenlight-courses.herokuapp.com/resources", method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? "", "resource-type" : "name"]).response { response in
-            let namePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("name.txt")?.path
-            let fm = FileManager.default
+        Alamofire.request(resourceURL, method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? "", "resource-type" : "name"]).response { response in
             fm.createFile(atPath: namePath!, contents: response.data)
             self.performSegue(withIdentifier: "loginSegue", sender: self)
         }
@@ -37,14 +34,14 @@ class LoginController: UIViewController {
 
     //MARK: Actions
     @IBAction func signUp(_ sender: UIButton) {
-        UIApplication.shared.open((URL(string: "https://greenlight-courses.herokuapp.com")!), options: [:], completionHandler: nil)
+        UIApplication.shared.open((URL(string: "https://greenlight-courses.herokuapp.com/signup")!), options: [:], completionHandler: nil)
     }
     
     @IBAction func login(_ sender: UIButton) {
         if let emailString = emailText.text, let idString = idText.text {
             print("making Alamofire request with email \(emailString) and id \(idString)")
         }
-        Alamofire.request("https://greenlight-courses.herokuapp.com/resources", method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? "", "resource-type" : "picture"]).response { response in
+        Alamofire.request(resourceURL, method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? "", "resource-type" : "picture"]).response { response in
             
             if let requestString = response.request, let responseString = response.response, let errorString = response.error {
                 print("Request: \(requestString)")
@@ -57,11 +54,10 @@ class LoginController: UIViewController {
                 if let dataSize = response.data?.count {
                     print("response contains \(dataSize) bytes")
                 }
-                let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
                 let idData = self.idText.text?.data(using: .utf8)
-                print("creating file at \(self.filePath!)")
-                self.fm.createFile(atPath: self.filePath!, contents: response.data)
-                self.fm.createFile(atPath: idPath!, contents: idData)
+                print("creating file at \(filePath!)")
+                fm.createFile(atPath: filePath!, contents: response.data)
+                fm.createFile(atPath: idPath!, contents: idData)
                 self.displayCredentials()
             } else if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 if data.count == 0 {

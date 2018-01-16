@@ -14,24 +14,11 @@ class CredentialsViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var memberIDLabel: UILabel!
-    var filePath : String!
-    var idPath : String!
-    var namePath : String!
-    var fm : FileManager!
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-        // This is just ugly copypasta from ViewController.swift. Some day in the future we will do this more elegantly.
-        filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
-        idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
-        namePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("name.txt")?.path
-        fm = FileManager.default
-        
-        // Set credentials using locally stored data.
-        if let photoData = fm.contents(atPath: filePath), let idData = fm.contents(atPath: idPath), let nameData = fm.contents(atPath: namePath) {
+    // Set credentials using locally stored data.
+        if let photoData = fm.contents(atPath: filePath!), let idData = fm.contents(atPath: idPath!), let nameData = fm.contents(atPath: namePath!) {
             photoImageView.image = UIImage(data: photoData)
             memberIDLabel.text = String(data: idData, encoding: .utf8)
             memberNameLabel.text = String(data: nameData, encoding: .utf8)
@@ -49,11 +36,11 @@ class CredentialsViewController: UIViewController {
     @IBAction func logout(_ sender: Any) {
         // Delete credentials.
         do {
-            try fm.removeItem(atPath: filePath)
-            try fm.removeItem(atPath: idPath)
-            try fm.removeItem(atPath: namePath)
+            try fm.removeItem(atPath: filePath!)
+            try fm.removeItem(atPath: idPath!)
+            try fm.removeItem(atPath: namePath!)
         } catch _ {
-            print("this is an error")
+            print("error deleting files")
         }
     }
 }

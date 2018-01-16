@@ -26,9 +26,6 @@ class CheckPictureController: UINavigationController {
     
     func pictureExists() -> Bool
     {
-        //This is copied from LoginController.swift, we should find a better way to do that.
-        let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
-        let fm = FileManager.default
         print("checking if \(filePath!) exists")
         return fm.fileExists(atPath: filePath!)
     }
