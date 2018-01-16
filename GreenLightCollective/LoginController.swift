@@ -25,10 +25,12 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func displayCredentials() {
+    func displayCredentials(segue: String) {
+        let idData = self.idText.text?.data(using: .utf8)
+        fm.createFile(atPath: idPath!, contents: idData)
         Alamofire.request(resourceURL, method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? "", "resource-type" : "name"]).response { response in
             fm.createFile(atPath: namePath!, contents: response.data)
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            self.performSegue(withIdentifier: segue, sender: self)
         }
     }
 
@@ -54,15 +56,14 @@ class LoginController: UIViewController {
                 if let dataSize = response.data?.count {
                     print("response contains \(dataSize) bytes")
                 }
-                let idData = self.idText.text?.data(using: .utf8)
                 print("creating file at \(filePath!)")
                 fm.createFile(atPath: filePath!, contents: response.data)
-                fm.createFile(atPath: idPath!, contents: idData)
-                self.displayCredentials()
+                self.displayCredentials(segue: "loginSegue")
             } else if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 if data.count == 0 {
                     print("null response")
                     // Prompt user to upload picture
+                    self.displayCredentials(segue: "uploadSegue")
                 } else {
                     // Send user an alert.
                     let alert = UIAlertController(title: "Login Problem", message: utf8Text, preferredStyle: .alert)
