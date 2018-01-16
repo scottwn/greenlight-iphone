@@ -8,8 +8,8 @@
 
 import Foundation
 
-let filePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("picture.jpg")?.path
-let idPath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("id.txt")?.path
-let namePath = NSURL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("name.txt")?.path
-let resourceURL = "https://greenlight-courses.herokuapp.com/resources"
 let fm = FileManager.default
+let filePath = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("picture.jpg").path
+let idPath = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("id.txt").path
+let namePath = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("name.txt").path
+let resourceURL = "https://greenlight-courses.herokuapp.com/resources"
