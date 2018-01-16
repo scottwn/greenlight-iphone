@@ -16,6 +16,7 @@
 		BED1A3C41FF9518D006CA57B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED1A3C31FF9518D006CA57B /* Assets.xcassets */; };
 		BED1A3C71FF9518D006CA57B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED1A3C51FF9518D006CA57B /* LaunchScreen.storyboard */; };
 		BED1A3D21FF9518E006CA57B /* GreenLightCollectiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1A3D11FF9518E006CA57B /* GreenLightCollectiveTests.swift */; };
+		BEF2C16D200E6360008AE323 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF2C16C200E6360008AE323 /* UploadViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		BED1A3CD1FF9518E006CA57B /* GreenLightCollectiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenLightCollectiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED1A3D11FF9518E006CA57B /* GreenLightCollectiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenLightCollectiveTests.swift; sourceTree = "<group>"; };
 		BED1A3D31FF9518E006CA57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEF2C16C200E6360008AE323 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				BED1A3C31FF9518D006CA57B /* Assets.xcassets */,
 				BED1A3C51FF9518D006CA57B /* LaunchScreen.storyboard */,
 				BED1A3C81FF9518D006CA57B /* Info.plist */,
+				BEF2C16C200E6360008AE323 /* UploadViewController.swift */,
 			);
 			path = GreenLightCollective;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED1A3BF1FF9518D006CA57B /* LoginController.swift in Sources */,
+				BEF2C16D200E6360008AE323 /* UploadViewController.swift in Sources */,
 				BEB0B6B1200268B700539A45 /* CredentialsViewController.swift in Sources */,
 				BE322C5E20066A2400FE0BFE /* CheckPictureController.swift in Sources */,
 				BED1A3BD1FF9518D006CA57B /* AppDelegate.swift in Sources */,
