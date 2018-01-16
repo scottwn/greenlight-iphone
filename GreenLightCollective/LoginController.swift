@@ -14,6 +14,7 @@ class LoginController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var idText: UITextField!
     @IBOutlet weak var emailText: UITextField!
+    let resource = AppResources()
     
     
     override func viewDidLoad() {
@@ -27,9 +28,9 @@ class LoginController: UIViewController {
     
     func displayCredentials(segue: String) {
         let idData = self.idText.text?.data(using: .utf8)
-        fm.createFile(atPath: idPath!, contents: idData)
+        resource.fm.createFile(atPath: resource.idPath, contents: idData)
         Alamofire.request(resourceURL, method: .get, parameters: ["email" : emailText.text ?? "", "id" : idText.text ?? "", "resource-type" : "name"]).response { response in
-            fm.createFile(atPath: namePath!, contents: response.data)
+            self.resource.fm.createFile(atPath: self.resource.namePath, contents: response.data)
             self.performSegue(withIdentifier: segue, sender: self)
         }
     }
@@ -56,8 +57,8 @@ class LoginController: UIViewController {
                 if let dataSize = response.data?.count {
                     print("response contains \(dataSize) bytes")
                 }
-                print("creating file at \(filePath!)")
-                fm.createFile(atPath: filePath!, contents: response.data)
+                print("creating file at \(self.resource.filePath)")
+                self.resource.fm.createFile(atPath: self.resource.filePath, contents: response.data)
                 self.displayCredentials(segue: "loginSegue")
             } else if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 if data.count == 0 {

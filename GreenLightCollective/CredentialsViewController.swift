@@ -14,11 +14,12 @@ class CredentialsViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var memberIDLabel: UILabel!
+    let resource = AppResources()
   
     override func viewDidLoad() {
         super.viewDidLoad()
     // Set credentials using locally stored data.
-        if let photoData = fm.contents(atPath: filePath!), let idData = fm.contents(atPath: idPath!), let nameData = fm.contents(atPath: namePath!) {
+        if let photoData = resource.fm.contents(atPath: resource.filePath), let idData = resource.fm.contents(atPath: resource.idPath), let nameData = resource.fm.contents(atPath: resource.namePath) {
             photoImageView.image = UIImage(data: photoData)
             memberIDLabel.text = String(data: idData, encoding: .utf8)
             memberNameLabel.text = String(data: nameData, encoding: .utf8)
@@ -36,9 +37,9 @@ class CredentialsViewController: UIViewController {
     @IBAction func logout(_ sender: Any) {
         // Delete credentials.
         do {
-            try fm.removeItem(atPath: filePath!)
-            try fm.removeItem(atPath: idPath!)
-            try fm.removeItem(atPath: namePath!)
+            try resource.fm.removeItem(atPath: resource.filePath)
+            try resource.fm.removeItem(atPath: resource.filePath)
+            try resource.fm.removeItem(atPath: resource.filePath)
         } catch _ {
             print("error deleting files")
         }

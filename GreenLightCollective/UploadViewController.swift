@@ -13,6 +13,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     //MARK: Properties
     @IBOutlet weak var photoImageView: UIImageView!
+    let resource = AppResources()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +49,10 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         //Save selectedImage as picture.jpg and upload to database.
         if let imageJPG = UIImageJPEGRepresentation(selectedImage, 0.5) {
-            fm.createFile(atPath: filePath!, contents: imageJPG)
+            resource.fm.createFile(atPath: resource.filePath, contents: imageJPG)
             Alamofire.upload(
                 multipartFormData: { multipartFormData in
-                    multipartFormData.append(fm.contents(atPath: idPath!)!, withName: "id")
+                    multipartFormData.append(self.resource.fm.contents(atPath: self.resource.idPath)!, withName: "id")
                     multipartFormData.append(imageJPG, withName: "picture")
             },
             to: resourceURL,

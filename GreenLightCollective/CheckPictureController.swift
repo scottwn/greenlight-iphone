@@ -26,8 +26,9 @@ class CheckPictureController: UINavigationController {
     
     func pictureExists() -> Bool
     {
-        print("checking if \(filePath!) exists")
-        return fm.fileExists(atPath: filePath!)
+        let resource = AppResources()
+        print("checking if \(resource.filePath) exists")
+        return resource.fm.fileExists(atPath: resource.filePath)
     }
     
     @objc func showLogin()
