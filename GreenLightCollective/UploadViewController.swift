@@ -9,7 +9,10 @@
 import UIKit
 
 class UploadViewController: UIViewController {
-
+    
+    //MARK: Properties
+    @IBOutlet weak var photoImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,5 +34,11 @@ class UploadViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    //MARK: Actions
+    @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
+        print("select image")
+        self.performSegue(withIdentifier: "credentialsSegue", sender: self)
+    }
+    
 }

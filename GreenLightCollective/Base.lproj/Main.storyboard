@@ -185,9 +185,13 @@
                             </label>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Lk6-Fl-D9i">
                                 <rect key="frame" x="27" y="86" width="320" height="320"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Lk6-Fl-D9i" secondAttribute="height" multiplier="1:1" id="Da7-v3-xY4"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KGD-br-hDO" appends="YES" id="D0p-yv-BUx"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -202,10 +206,16 @@
                         <viewLayoutGuide key="safeArea" id="DrU-1f-Cvl"/>
                     </view>
                     <connections>
+                        <outlet property="photoImageView" destination="Lk6-Fl-D9i" id="KI4-Gk-AOl"/>
                         <segue destination="qHF-AC-kbl" kind="show" identifier="credentialsSegue" id="uko-W9-f8Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rm3-mH-M3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="KGD-br-hDO">
+                    <connections>
+                        <action selector="selectImage:" destination="W5l-hD-T2K" id="6Ro-ab-oub"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="972" y="-596.85157421289364"/>
         </scene>
