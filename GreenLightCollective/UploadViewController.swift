@@ -48,26 +48,30 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         //Save selectedImage as picture.jpg and upload to database.
-        if let imageJPG = UIImageJPEGRepresentation(selectedImage, 0.5) {
+        if let imageJPG = UIImageJPEGRepresentation(selectedImage, 0.5), let idData = self.resource.fm.contents(atPath: self.resource.idPath) {
             resource.fm.createFile(atPath: resource.filePath, contents: imageJPG)
+            print("created \(resource.filePath), uploading using Alamofire.upload")
             Alamofire.upload(
                 multipartFormData: { multipartFormData in
-                    multipartFormData.append(self.resource.fm.contents(atPath: self.resource.idPath)!, withName: "id")
-                    multipartFormData.append(imageJPG, withName: "picture")
-            },
-            to: resourceURL,
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .success(let upload, _, _):
-                    print(upload.response!)
-                case .failure(let encodingError):
-                    print(encodingError)
-                }
+                    multipartFormData.append(idData, withName: "id")
+                    multipartFormData.append(URL(fileURLWithPath: self.resource.filePath), withName: "picture")
+                },
+                to: resourceURL,
+                encodingCompletion: { encodingResult in
+                    switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.response { response in
+                            print(response)
+                        }
+                    case .failure(let encodingError):
+                        print(encodingError)
+                    }
             })
         } else {
-            print("JPG representation error")
+            print("data conversion error")
         }
-        self.performSegue(withIdentifier: "credentialsSegue", sender: self)
+        print("display credentials using new picture")
+        dismiss(animated: true, completion: {self.performSegue(withIdentifier: "credentialsSegue", sender: self)})
     }
     
     //MARK: Actions
